@@ -18,6 +18,7 @@ set showcmd
 set hidden
 set wildmenu
 set wildmode=list:longest
+set wildignore+=*.o,*.obj,.git,*.pyc
 "set wildmode=longest:full
 set visualbell
 set cursorline
@@ -29,6 +30,7 @@ set hlsearch
 set splitright
 set winheight=999
 set winminheight=0
+"set paste
 "set relativenumber
 "set undofile
 
@@ -67,8 +69,11 @@ vnoremap <F1> <ESC>
 " I hate you fat finger
 nnoremap ; :
 
-" Save on lose focus
+" Save on lose focus for ui
 au FocusLost * :wa
+autocmd BufLeave,FocusLost silent! wall
+" Save auto when changing buff
+:set autowrite
 
 " :help oneoftheseoptions for more info.
 
@@ -143,3 +148,15 @@ let NERDTreeIgnore = ['\.pyc$']
 " Yankring mappings
 nnoremap <silent> <F3> :YRShow<cr>
 inoremap <silent> <F3> <ESC>:YRShow<cr>
+
+" TagBar Toggle remap
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
+
+nnoremap <silent> <Leader>f :NERDTreeFind<CR>
+nnoremap <silent> <Leader>tt :NERDTreeToggle<CR>
+
+" Magic for python related vimrc stuff
+if !exists("autocommands_loaded")
+  let autocommands_loaded = 1
+  autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vimrc.python
+endif
