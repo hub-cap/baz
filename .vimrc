@@ -133,7 +133,6 @@ nnoremap <F5> :!clear; ./%<CR>
 syntax on
 set t_Co=256
 colorscheme vividchalk
-" colorscheme molokai
 
 " now! is replaced with the current date, a newline, and a tab.
 iab <expr> now! strftime("%A, %d %B %Y %I:%M%p\n\t")
@@ -150,6 +149,9 @@ nnoremap <silent> <F3> :YRShow<cr>
 inoremap <silent> <F3> <ESC>:YRShow<cr>
 
 " TagBar Toggle remap
+" This guy causes vim to exit 1 with a git commit
+" This command in git global fixes the issue
+" git config --global core.editor /usr/bin/vim
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 nnoremap <silent> <Leader>f :NERDTreeFind<CR>
